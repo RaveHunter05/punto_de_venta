@@ -1,4 +1,4 @@
-#!/Users/ravehunter05/Documents/experimento-django/env/bin/python3
+#!/Users/ravehunter05/Documents/punto_de_venta/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
