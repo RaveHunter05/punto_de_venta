@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Productos
+from .models import IngresarProductos
 
 #Aqui importa todo para el form
 
@@ -9,7 +9,7 @@ from .forms import NameForm
 
 
 def productos(request):
-    productos = Productos.objects.all()
+    productos = IngresarProductos.objects.all()
     context = {
         'productos': productos
     }

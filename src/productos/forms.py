@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Productos
+from .models import IngresarProductos
 
 class NameForm(ModelForm):
     class Meta:
-        model = Productos
+        model = IngresarProductos
         fields = '__all__'
