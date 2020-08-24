@@ -73,3 +73,27 @@ class Employees(models.Model):
 
     def __str__(self):
         return self.title
+
+class Customers(models.Model):
+    company_name = models.CharField(max_length=240)
+    address = models.CharField(max_length=240)
+    city = models.CharField(120)
+    region = models.CharField(120)
+    postal_code = models.IntegerField(null = False)
+    country = models.CharField(max_length=120)
+    phone = models.CharField(max_length=40)
+
+class Shippers(models.Model):
+    company_name = models.CharField(120)
+    phone = models.CharField(40)
+
+class Orders(models.Model):
+    customers_id = models.Foreignkey(
+        Customers,
+        on_delete = models.CASCADE
+    )
+    employees_id = models.ForeignKey(
+        Employees,
+        on_delete = models.CASCADE
+        #Aqui faltan los otros datos de las tablas, tengo sueño xd
+    )
