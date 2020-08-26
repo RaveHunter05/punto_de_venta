@@ -83,9 +83,15 @@ class Customers(models.Model):
     country = models.CharField(max_length=120)
     phone = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.title
+
 class Shippers(models.Model):
     company_name = models.CharField(max_length=120)
     phone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.title
 
 class Orders(models.Model):
     customers_id = models.ForeignKey(
@@ -100,6 +106,9 @@ class Orders(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     required_date = models.DateTimeField(null=False)
 
+    def __str__(self):
+        return self.title
+
 class Order_details(models.Model):
     orders_id = models.ForeignKey(
         Orders,
@@ -112,4 +121,7 @@ class Order_details(models.Model):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField(null = False)
     discount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.title
     
