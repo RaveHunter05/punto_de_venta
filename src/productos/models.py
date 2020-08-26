@@ -77,18 +77,18 @@ class Employees(models.Model):
 class Customers(models.Model):
     company_name = models.CharField(max_length=240)
     address = models.CharField(max_length=240)
-    city = models.CharField(120)
-    region = models.CharField(120)
+    city = models.CharField(max_length=120)
+    region = models.CharField(max_length=120)
     postal_code = models.IntegerField(null = False)
     country = models.CharField(max_length=120)
     phone = models.CharField(max_length=40)
 
 class Shippers(models.Model):
-    company_name = models.CharField(120)
-    phone = models.CharField(40)
+    company_name = models.CharField(max_length=120)
+    phone = models.CharField(max_length=20)
 
 class Orders(models.Model):
-    customers_id = models.Foreignkey(
+    customers_id = models.ForeignKey(
         Customers,
         on_delete = models.CASCADE
     )
