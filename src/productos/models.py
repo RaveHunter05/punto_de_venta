@@ -97,3 +97,19 @@ class Orders(models.Model):
         on_delete = models.CASCADE
         #Aqui faltan los otros datos de las tablas, tengo sueño xd
     )
+    order_date = models.DateTimeField(auto_now_add=True)
+    required_date = models.DateTimeField(null=False)
+
+class Order_details(models.Model):
+    orders_id = models.ForeignKey(
+        Orders,
+        on_delete = models.CASCADE
+    )
+    products_id = models.ForeignKey(
+        IngresarProductos,
+        on_delete = models.CASCADE
+    )
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(null = False)
+    discount = models.DecimalField(max_digits=10, decimal_places=2)
+    
