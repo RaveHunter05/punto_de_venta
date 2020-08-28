@@ -4,7 +4,7 @@ from django.db import models
 #Cambiar el nombre del modelo a inventario de productos
 # 2 formularios uno de compras y uno para ventas
 
-class Suppliers(models.Model):
+class Supplier(models.Model):
     company_name = models.CharField(max_length=120)
     address = models.CharField(max_length=500)
     city = models.CharField(max_length=120)
@@ -17,7 +17,7 @@ class Suppliers(models.Model):
     def __str__(self):
         return self.title
 
-class Categories(models.Model):
+class Categorie(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(null=False)
     picture = models.ImageField(upload_to='imagenes_productos/categories/')
@@ -25,7 +25,7 @@ class Categories(models.Model):
     def __str__(self):
         return self.title
 
-class IngresarProductos(models.Model):
+class Product(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -33,11 +33,11 @@ class IngresarProductos(models.Model):
     unidades_stock = models.IntegerField(null=False)
     unidades_orden = models.IntegerField(null=False)
     suppliers_id = models.ForeignKey(
-        Suppliers,
+        Supplier,
         on_delete=models.CASCADE
     )
     categories_id = models.ForeignKey(
-        Categories,
+        Categorie,
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -54,7 +54,7 @@ class IngresarProductos(models.Model):
 # Detalle de ventas: id producto, 
 # id ventas, descuento, IVA, subtotal, cantidad
 
-class Employees(models.Model):
+class Employee(models.Model):
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
     title = models.CharField(max_length=120)
@@ -74,7 +74,7 @@ class Employees(models.Model):
     def __str__(self):
         return self.title
 
-class Customers(models.Model):
+class Customer(models.Model):
     company_name = models.CharField(max_length=240)
     address = models.CharField(max_length=240)
     city = models.CharField(max_length=120)
@@ -86,36 +86,54 @@ class Customers(models.Model):
     def __str__(self):
         return self.title
 
-class Shippers(models.Model):
+class Shipper(models.Model):
     company_name = models.CharField(max_length=120)
     phone = models.CharField(max_length=20)
 
     def __str__(self):
         return self.title
 
-class Orders(models.Model):
+class Order(models.Model):
     customers_id = models.ForeignKey(
-        Customers,
+        Customer,
         on_delete = models.CASCADE
     )
     employees_id = models.ForeignKey(
-        Employees,
+        Employee,
         on_delete = models.CASCADE
         #Aqui faltan los otros datos de las tablas, tengo sueño xd
     )
     order_date = models.DateTimeField(auto_now_add=True)
-    required_date = models.DateTimeField(null=False)
 
     def __str__(self):
         return self.title
 
-class Order_details(models.Model):
+class Invoice(models.Model):
+    order_id = models.ForeignKey(
+        Order,
+        on_delete = models.CASCADE
+    )
+    customers_id = models.ForeignKey(
+        Customer,
+        on_delete = models.CASCADE
+    )
+    employees_id = models.ForeignKey(
+        Employee,
+        on_delete = models.CASCADE
+        #Aqui faltan los otros datos de las tablas, tengo sueño xd
+    )
+    order_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Order_detail(models.Model):
     orders_id = models.ForeignKey(
-        Orders,
+        Order,
         on_delete = models.CASCADE
     )
     products_id = models.ForeignKey(
-        IngresarProductos,
+        Product,
         on_delete = models.CASCADE
     )
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)

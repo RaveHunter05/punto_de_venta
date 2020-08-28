@@ -4,11 +4,12 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Suppliers)
-admin.site.register(Categories)
-admin.site.register(IngresarProductos)
-admin.site.register(Employees)
-admin.site.register(Customers)
-admin.site.register(Shippers)
-admin.site.register(Orders)
-admin.site.register(Order_details)
+admin.site.register(Supplier)
+admin.site.register(Categorie)
+admin.site.register(Product)
+admin.site.register(Employee)
+admin.site.register(Customer)
+admin.site.register(Shipper)
+admin.site.register(Order)
+admin.site.register(Order_detail)
+admin.site.register(Invoice)
