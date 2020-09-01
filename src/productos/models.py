@@ -77,11 +77,11 @@ class Employee(models.Model):
         return self.title
 
 class Customer(models.Model):
-    company_name = models.CharField(max_length=240)
+    name = models.CharField(max_length=240, null=False)
     address = models.CharField(max_length=240)
     city = models.CharField(max_length=120)
     region = models.CharField(max_length=120)
-    postal_code = models.IntegerField(null = False)
+    postal_code = models.IntegerField()
     country = models.CharField(max_length=120)
     phone = models.CharField(max_length=40)
 
