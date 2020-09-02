@@ -3,7 +3,7 @@ from django.urls import path
 
 from posts.views import post_list_view
 from principal.views import principal
-from productos.views import add_product, add_supplier, add_categorie
+from productos.views import add_product, add_supplier, add_categorie, add_employee
 
 
 # Esto es para las imagenes
@@ -16,7 +16,8 @@ urlpatterns = [
     path('', principal),
     path('add_product/', add_product),
     path('add_supplier/', add_supplier),
-    path('add_categorie', add_categorie)
+    path('add_categorie', add_categorie),
+    path('add_employee', add_employee)
 ]
 
 #Esto también es para la configuración de la ruta de las imágenes
