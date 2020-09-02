@@ -89,8 +89,11 @@ class Customer(models.Model):
         return self.title
 
 class Shipper(models.Model):
+    name = models.CharField(max_length=120, null=False)
+    phone = models.CharField(max_length=40)
     company_name = models.CharField(max_length=120, null=False)
     phone = models.CharField(max_length=20, null=False)
+    photo = models.ImageField(upload_to='imagenes_productos/empleados/', null=False)
 
     def __str__(self):
         return self.title

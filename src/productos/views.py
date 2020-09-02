@@ -3,7 +3,7 @@ from .models import Product
 
 #Aqui importa todo para el form
 
-from .forms import AddProducts, AddSupplier, AddCategorie, AddEmployee, AddCustomer
+from .forms import AddProducts, AddSupplier, AddCategorie, AddEmployee, AddCustomer, AddShipper, AddOrder
 
 # Create your views here.
 
@@ -61,4 +61,25 @@ def add_customer(request):
             form.save()
     else:
         form = AddCustomer
+
     return render(request, 'AddCustomer.html', {'form': form})
+
+def add_shipper(request):
+    if(request.method == 'POST'):
+        form = AddShipper(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddShipper
+
+    return render(request, 'AddShipper.html', {'form': form})
+
+def add_order(request):
+    if(request.method == 'POST'):
+        form = AddOrder(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddOrder
+    
+    return render(request, 'AddOrder.html', {'form': form})

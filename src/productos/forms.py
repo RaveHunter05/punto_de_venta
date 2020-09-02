@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Product, Supplier, Categorie, Employee, Customer
+from .models import Product, Supplier, Categorie, Employee, Customer, Shipper, Order
 
 class AddProducts(ModelForm):
     class Meta:
@@ -24,4 +24,14 @@ class AddEmployee(ModelForm):
 class AddCustomer(ModelForm):
     class Meta:
         model = Customer
+        fields = '__all__'
+
+class AddShipper(ModelForm):
+    class Meta:
+        model = Shipper
+        fields = '__all__'
+
+class AddOrder(ModelForm):
+    class Meta:
+        model = Order
         fields = '__all__'
